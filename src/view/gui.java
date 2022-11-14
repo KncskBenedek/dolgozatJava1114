@@ -158,19 +158,9 @@ public class gui extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setSelected(true);
         jRadioButton3.setText("X kezd");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
-            }
-        });
 
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setText("O kezd");
-        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton4ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -298,15 +288,6 @@ public class gui extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosing
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        jel = KERESZT;
-
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
-
-    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        jel = KOR;
-    }//GEN-LAST:event_jRadioButton4ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -423,6 +404,16 @@ public class gui extends javax.swing.JFrame {
     }
 
     private void amobaGen(int i) {
+        jRadioButton3.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                if(jRadioButton3.isSelected()){
+                jel = KERESZT;
+                }else{
+                     jel = KOR;
+                }
+                pack();
+            }
+        });
         amoba = i;
         amobaPanel.setLayout(new GridLayout(i, i + 1));
         jel = KERESZT;
