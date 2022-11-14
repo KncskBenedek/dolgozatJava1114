@@ -59,34 +59,33 @@ public class gui extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Beállítás"));
 
-        jCheckBox1.setText("jCheckBox1");
+        jCheckBox1.setText("kever");
+        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBox1ItemStateChanged(evt);
+            }
+        });
 
-        jLabel1.setText("jLabel1");
-
-        jTextField1.setText("jTextField1");
+        jLabel1.setText("pin");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(jCheckBox1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
+                    .addComponent(jCheckBox1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addGap(59, 59, 59)
                 .addComponent(jCheckBox1)
-                .addGap(52, 52, 52)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,7 +99,7 @@ public class gui extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(pinPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -116,7 +115,7 @@ public class gui extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("tab1", jPanel4);
+        jTabbedPane1.addTab("Bejelentkezés", jPanel4);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Beállítás"));
 
@@ -185,7 +184,7 @@ public class gui extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
         );
@@ -202,7 +201,7 @@ public class gui extends javax.swing.JFrame {
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab2", jPanel5);
+        jTabbedPane1.addTab("Játék", jPanel5);
 
         jmProgram.setText("Program");
 
@@ -247,7 +246,7 @@ public class gui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -256,6 +255,16 @@ public class gui extends javax.swing.JFrame {
     private void jmiUjraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUjraActionPerformed
         
     }//GEN-LAST:event_jmiUjraActionPerformed
+
+    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
+       //kever
+       if(jCheckBox1.isSelected()){
+        kever();   
+       }else{
+           alapGombPin();
+       }
+        
+    }//GEN-LAST:event_jCheckBox1ItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -318,15 +327,39 @@ public class gui extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void sajatInit() {
-        gombokPin = new JButton[10];
         
-        for (int i = 1; i < gombokPin.length; i++) {
-            gombokPin[i]= new JButton(""+ i);
-            
+        gombokPin = new JButton[10];
+        for (int i = 0; i < gombokPin.length; i++) {
+            gombokPin[i]= new JButton();
             pinPanel.add((Component)(gombokPin[i]));
-
         }
-            gombokPin[gombokPin.length-1]= new JButton(""+ 0);
-            pinPanel.add((Component)(gombokPin[gombokPin.length-1]));
+        alapGombPin();
+        
+    }
+
+    private void kever() {
+        int[] temp = new int[10];
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = i;
+        }
+        for (int i = 0; i < temp.length; i++) {
+            int valt = temp[i];
+            int rnd = (int)(Math.random()*temp.length-1);
+            temp[i] = temp[rnd];
+            temp[rnd] = valt;
+        }
+        int i = 0;
+        for (JButton elem : gombokPin) {
+            elem.setText(String.valueOf(temp[i]));
+            i++;
+        }
+        
+    }
+
+    private void alapGombPin() {
+        for (int i = 0; i < gombokPin.length-1; i++) {
+            gombokPin[i].setText(""+ (i+1));
+        }
+        gombokPin[gombokPin.length-1].setText("" + 0);
     }
 }
