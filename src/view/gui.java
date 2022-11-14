@@ -2,9 +2,11 @@ package view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.List;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -14,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author koncsik.benedek
  */
 public class gui extends javax.swing.JFrame {
-
+    private int amoba;
     private JButton[] gombokPin;
     private Color alapSzin;
     private ArrayList<JButton> gombokAmoba;
@@ -421,6 +423,7 @@ public class gui extends javax.swing.JFrame {
     }
 
     private void amobaGen(int i) {
+        amoba = i;
         amobaPanel.setLayout(new GridLayout(i, i + 1));
         jel = KERESZT;
         for (int j = 0; j < i * i; j++) {
@@ -449,6 +452,7 @@ public class gui extends javax.swing.JFrame {
     private void menuAction() {
         ujra();
         kilep();
+        elrendezes();
     }
 
     private void ujra() {
@@ -479,6 +483,23 @@ public class gui extends javax.swing.JFrame {
             }
         });
 
+    }
+
+    private void elrendezes() {
+        jrbVizszintes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                if(jrbVizszintes.isSelected()){
+                    jPanel5.setLayout(new FlowLayout());
+                    
+                    jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.Y_AXIS));
+                }else{
+                    jPanel5.setLayout(new BoxLayout(jPanel5, BoxLayout.Y_AXIS));
+                   
+                    jPanel3.setLayout(new BoxLayout(jPanel3, BoxLayout.X_AXIS));
+                }
+                pack();
+            }
+        });
     }
 
 }
