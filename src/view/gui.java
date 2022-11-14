@@ -4,18 +4,19 @@
  */
 package view;
 
+import java.awt.Component;
+import javax.swing.JButton;
+
 /**
  *
  * @author koncsik.benedek
  */
 public class gui extends javax.swing.JFrame {
 
-    /**
-     * Creates new form gui
-     */
+    private JButton[] gombokPin;
     public gui() {
         initComponents();
-        
+        sajatInit();
     }
 
     /**
@@ -30,7 +31,7 @@ public class gui extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
-        pinaPanel = new javax.swing.JPanel();
+        pinPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
@@ -53,8 +54,8 @@ public class gui extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(410, 350));
 
-        pinaPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Pinkód"));
-        pinaPanel.setLayout(new java.awt.GridLayout());
+        pinPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Pinkód"));
+        pinPanel.setLayout(new java.awt.GridLayout(4, 3));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Beállítás"));
 
@@ -98,7 +99,7 @@ public class gui extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(pinaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pinPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
@@ -107,7 +108,7 @@ public class gui extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(pinaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pinPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(98, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
@@ -313,6 +314,19 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmiUjra;
     private javax.swing.JRadioButtonMenuItem jrbFuggoleges;
     private javax.swing.JRadioButtonMenuItem jrbVizszintes;
-    private javax.swing.JPanel pinaPanel;
+    private javax.swing.JPanel pinPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void sajatInit() {
+        gombokPin = new JButton[10];
+        
+        for (int i = 1; i < gombokPin.length; i++) {
+            gombokPin[i]= new JButton(""+ i);
+            
+            pinPanel.add((Component)(gombokPin[i]));
+
+        }
+            gombokPin[gombokPin.length-1]= new JButton(""+ 0);
+            pinPanel.add((Component)(gombokPin[gombokPin.length-1]));
+    }
 }
