@@ -1,11 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package view;
 
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +13,8 @@ import javax.swing.JButton;
 public class gui extends javax.swing.JFrame {
 
     private JButton[] gombokPin;
+    private Color alapSzin;
+
     public gui() {
         initComponents();
         sajatInit();
@@ -33,9 +34,9 @@ public class gui extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         pinPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jrbKever = new javax.swing.JCheckBox();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        pinField = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -51,18 +52,23 @@ public class gui extends javax.swing.JFrame {
         jrbVizszintes = new javax.swing.JRadioButtonMenuItem();
         jrbFuggoleges = new javax.swing.JRadioButtonMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(410, 350));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         pinPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Pinkód"));
         pinPanel.setLayout(new java.awt.GridLayout(4, 3));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Beállítás"));
 
-        jCheckBox1.setText("kever");
-        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+        jrbKever.setText("kever");
+        jrbKever.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCheckBox1ItemStateChanged(evt);
+                jrbKeverItemStateChanged(evt);
             }
         });
 
@@ -73,23 +79,30 @@ public class gui extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(47, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pinField))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jrbKever)
+                        .addGap(0, 66, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jCheckBox1)
-                .addGap(18, 18, 18)
+                .addGap(65, 65, 65)
+                .addComponent(jrbKever)
+                .addGap(24, 24, 24)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pinField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -99,7 +112,7 @@ public class gui extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(pinPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -108,21 +121,23 @@ public class gui extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(pinPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
         );
 
         jTabbedPane1.addTab("Bejelentkezés", jPanel4);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Beállítás"));
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         jScrollPane2.setPreferredSize(new java.awt.Dimension(30, 70));
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "3*3", "4*4", "5*5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -141,23 +156,18 @@ public class gui extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton4)
-                            .addComponent(jRadioButton3))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRadioButton4)
+                    .addComponent(jRadioButton3))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addComponent(jRadioButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButton4)
@@ -214,6 +224,11 @@ public class gui extends javax.swing.JFrame {
         jmProgram.add(jmiUjra);
 
         jmiKilep.setText("Kilép");
+        jmiKilep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiKilepActionPerformed(evt);
+            }
+        });
         jmProgram.add(jmiKilep);
 
         jMenuBar1.add(jmProgram);
@@ -244,27 +259,47 @@ public class gui extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmiUjraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUjraActionPerformed
-        
+        pinField.setText("");
+        jrbKever.setSelected(false);
+        for (JButton jButton : gombokPin) {
+            jButton.setBackground(alapSzin);
+        }
     }//GEN-LAST:event_jmiUjraActionPerformed
 
-    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
-       //kever
-       if(jCheckBox1.isSelected()){
-        kever();   
-       }else{
-           alapGombPin();
+    private void jrbKeverItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrbKeverItemStateChanged
+        //kever
+        if (jrbKever.isSelected()) {
+            kever();
+        } else {
+            alapGombPin();
+        }
+        for (JButton jButton : gombokPin) {
+            jButton.setBackground(alapSzin);
+        }
+
+    }//GEN-LAST:event_jrbKeverItemStateChanged
+
+    private void jmiKilepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiKilepActionPerformed
+       int valasz = JOptionPane.showConfirmDialog(this, "Kilépés", "Biztos kilép?", JOptionPane.YES_NO_OPTION);
+       if(valasz == JOptionPane.YES_OPTION){
+           System.exit(valasz);
        }
-        
-    }//GEN-LAST:event_jCheckBox1ItemStateChanged
+    }//GEN-LAST:event_jmiKilepActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int valasz = JOptionPane.showConfirmDialog(this, "Kilépés", "Biztos kilép?", JOptionPane.YES_NO_OPTION);
+       if(valasz == JOptionPane.YES_OPTION){
+           System.exit(valasz);
+       }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
@@ -303,7 +338,6 @@ public class gui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JMenu jMenu2;
@@ -317,12 +351,13 @@ public class gui extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenu jmProgram;
     private javax.swing.JMenuItem jmiKilep;
     private javax.swing.JMenuItem jmiUjra;
     private javax.swing.JRadioButtonMenuItem jrbFuggoleges;
+    private javax.swing.JCheckBox jrbKever;
     private javax.swing.JRadioButtonMenuItem jrbVizszintes;
+    private javax.swing.JTextField pinField;
     private javax.swing.JPanel pinPanel;
     // End of variables declaration//GEN-END:variables
 
@@ -330,21 +365,32 @@ public class gui extends javax.swing.JFrame {
         
         gombokPin = new JButton[10];
         for (int i = 0; i < gombokPin.length; i++) {
-            gombokPin[i]= new JButton();
-            pinPanel.add((Component)(gombokPin[i]));
+            gombokPin[i] = new JButton();
+            pinPanel.add((Component) (gombokPin[i]));
+            gombokPin[i].addActionListener(new java.awt.event.ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    JButton gomb = (JButton) evt.getSource();
+                    gomb.setBackground(Color.CYAN);
+                    pinField.setText(pinField.getText() + gomb.getText());
+                    System.out.println(pinField.getText());
+                }
+            });
         }
+        alapSzin = gombokPin[0].getBackground();
         alapGombPin();
-        
+
     }
 
     private void kever() {
+        pinField.setText("");
         int[] temp = new int[10];
         for (int i = 0; i < temp.length; i++) {
             temp[i] = i;
         }
         for (int i = 0; i < temp.length; i++) {
             int valt = temp[i];
-            int rnd = (int)(Math.random()*temp.length-1);
+            int rnd = (int) (Math.random() * temp.length - 1);
             temp[i] = temp[rnd];
             temp[rnd] = valt;
         }
@@ -353,13 +399,14 @@ public class gui extends javax.swing.JFrame {
             elem.setText(String.valueOf(temp[i]));
             i++;
         }
-        
+
     }
 
     private void alapGombPin() {
-        for (int i = 0; i < gombokPin.length-1; i++) {
-            gombokPin[i].setText(""+ (i+1));
+        for (int i = 0; i < gombokPin.length - 1; i++) {
+            gombokPin[i].setText("" + (i + 1));
         }
-        gombokPin[gombokPin.length-1].setText("" + 0);
+        gombokPin[gombokPin.length - 1].setText("" + 0);
     }
+
 }
